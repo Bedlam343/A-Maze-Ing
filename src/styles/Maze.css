@@ -1,0 +1,35 @@
+.cell {
+  height: 20px;
+  width: 20px;
+}
+
+.topWall {
+  border-top: 1px solid #000;
+}
+.rightWall {
+  border-right: 1px solid #000;
+}
+.bottomWall {
+  border-bottom: 1px solid #000;
+}
+.leftWall {
+  border-left: 1px solid #000;
+}
+
+.player div {
+  position: relative;
+  left: 1px;
+  height: 90%;
+  width: 90%;
+  background: red;
+  border-radius: 50%;
+}
+
+.destination div {
+  position: relative;
+  left: 1px;
+  height: 90%;
+  width: 90%;
+  background: green;
+  border-radius: 50%;
+}
