@@ -13,8 +13,8 @@
   border: 1px solid #834426;
   box-shadow: 5px 5px #c2b7ab;
   color: #ffffff;
-  width: 40px;
-  margin: 15px;
+  width: 35px;
+  margin: 5px;
   text-align: center;
 
   &:hover {

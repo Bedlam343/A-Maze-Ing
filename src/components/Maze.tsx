@@ -24,13 +24,23 @@ const Maze = ({ maze, playerPos }: PropsType) => {
       classes.push("leftWall");
     }
 
+    // draw destination
+    if (row === maze.length - 1 && col === maze[0].length - 1) {
+      classes.push("destination");
+    }
     // draw player
     if (row === playerPos[0] && col === playerPos[1]) {
       classes.push("player");
     }
-    // draw destination
-    if (row === maze.length - 1 && col === maze[0].length - 1) {
-      classes.push("destination");
+
+    // win condition
+    if (
+      row === maze.length - 1 &&
+      col === maze[0].length - 1 &&
+      row === playerPos[0] &&
+      col === playerPos[1]
+    ) {
+      classes.push("win");
     }
 
     return classes.join(" ");
@@ -46,7 +56,9 @@ const Maze = ({ maze, playerPos }: PropsType) => {
                 key={`cell-${cIndex}`}
                 className={makeClassName(rIndex, cIndex)}
               >
-                <div />
+                <div className="cell-inside">
+                  <div className="ball" />
+                </div>
               </td>
             ))}
           </tr>
