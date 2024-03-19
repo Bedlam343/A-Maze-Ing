@@ -1,20 +1,32 @@
+import { KeyboardEvent, MouseEvent } from "react";
 import "../styles/Controls.css";
 
-const Controls = () => {
+type PropsType = {
+  handleMove: (event: KeyboardEvent<HTMLDivElement>) => void;
+};
+
+const Controls = ({ handleMove }: PropsType) => {
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    console.log(event.currentTarget.id);
+    handleMove({
+      key: event.currentTarget.id,
+    } as KeyboardEvent<HTMLDivElement>);
+  };
+
   return (
     <div className="control-arrows">
-      <div className="key">
+      <div id="ArrowUp" onMouseDown={handleMouseDown} className="key">
         <p>UP</p>
       </div>
 
       <div className="bottom-row">
-        <div className="key">
+        <div id="ArrowLeft" onMouseDown={handleMouseDown} className="key">
           <p>LEFT</p>
         </div>
-        <div className="key">
+        <div id="ArrowDown" onMouseDown={handleMouseDown} className="key">
           <p>DOWN</p>
         </div>
-        <div className="key">
+        <div id="ArrowRight" onMouseDown={handleMouseDown} className="key">
           <p>RIGHT</p>
         </div>
       </div>

@@ -37,7 +37,7 @@ const Maze = ({ maze, playerPos }: PropsType) => {
   };
 
   return (
-    <table style={{ borderCollapse: "collapse" }}>
+    <table className="table" style={{ borderCollapse: "collapse" }}>
       <tbody>
         {maze.map((row, rIndex) => (
           <tr key={`row-${rIndex}`}>
