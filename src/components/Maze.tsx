@@ -47,24 +47,31 @@ const Maze = ({ maze, playerPos }: PropsType) => {
   };
 
   return (
-    <table className="table" style={{ borderCollapse: "collapse" }}>
-      <tbody>
-        {maze.map((row, rIndex) => (
-          <tr key={`row-${rIndex}`}>
-            {row.map((_, cIndex) => (
-              <td
-                key={`cell-${cIndex}`}
-                className={makeClassName(rIndex, cIndex)}
-              >
-                <div className="cell-inside">
-                  <div className="ball" />
-                </div>
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div
+      style={{
+        display: "inline-grid",
+        gridTemplateColumns: `repeat(${maze[0].length}, 1fr)`,
+        gridTemplateRows: `repeat(${maze.length}, 1fr)`,
+        width: "500px",
+        height: "500px",
+      }}
+    >
+      {maze.map((row, rIndex) =>
+        row.map((_, cIndex) => (
+          <div
+            key={`cell-${cIndex}`}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            className={makeClassName(rIndex, cIndex)}
+          >
+            <div />
+          </div>
+        ))
+      )}
+    </div>
   );
 };
 
