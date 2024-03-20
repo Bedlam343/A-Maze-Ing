@@ -4,9 +4,10 @@ import "../styles/Complexity.css";
 type PropsType = {
   value: number;
   onChange: (value: number) => void;
+  disabled: boolean;
 };
 
-const Complexity = ({ value, onChange }: PropsType) => {
+const Complexity = ({ value, onChange, disabled }: PropsType) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(+event.target.value);
   };
@@ -20,9 +21,10 @@ const Complexity = ({ value, onChange }: PropsType) => {
           id="size"
           name="size"
           min="5"
-          max="40"
+          max="35"
           value={value}
           onChange={handleChange}
+          disabled={disabled}
         />
       </div>
     </div>

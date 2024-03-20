@@ -25,7 +25,7 @@
 .player div {
   height: 65%;
   width: 65%;
-  background: red;
+  background: skyblue;
   border-radius: 50%;
 }
 
@@ -57,5 +57,5 @@
 } */
 
 .win {
-  background: orange;
+  background: crimson;
 }

@@ -50,6 +50,7 @@ const Maze = ({ maze, playerPos }: PropsType) => {
     <div
       style={{
         display: "inline-grid",
+        border: "1px solid black",
         gridTemplateColumns: `repeat(${maze[0].length}, 1fr)`,
         gridTemplateRows: `repeat(${maze.length}, 1fr)`,
         width: "500px",

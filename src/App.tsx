@@ -6,9 +6,12 @@ import Maze from "./components/Maze";
 import Controls from "./components/Controls";
 import Button from "./components/Button";
 import Complexity from "./components/Complexity";
+import Confetti from "./components/Confetti";
+
+import { Status } from "./types";
 
 const App = () => {
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [status, setStatus] = useState<Status>("playing");
   const [gameId, setGameId] = useState<number>(0);
   const [mazeSize, setMazeSize] = useState<number>(10);
   const [playerPos, setPlayerPos] = useState<[number, number]>([0, 0]);
@@ -21,16 +24,24 @@ const App = () => {
     setPlayerPos([0, 0]);
   }, [mazeSize, gameId]);
 
+  useEffect(() => {
+    const [row, col] = playerPos;
+    if (row === mazeSize - 1 && col === mazeSize - 1) {
+      setStatus("won");
+    }
+  }, [playerPos]);
+
   const handleSizeChange = (value: number) => {
     setMazeSize(value);
   };
 
   const handleNewGame = () => {
+    setStatus("playing");
     setGameId((prevId) => prevId + 1);
   };
 
   const handleMove = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (!isPlaying) return;
+    if (status !== "playing") return;
 
     const [row, col] = playerPos;
     const key: string = event.key;
@@ -55,7 +66,11 @@ const App = () => {
 
       <div className="second-row">
         <div className="second-row-inner-container">
-          <Complexity value={mazeSize} onChange={handleSizeChange} />
+          <Complexity
+            value={mazeSize}
+            onChange={handleSizeChange}
+            disabled={status === "won"}
+          />
           <div className="new-game-container">
             <Button text="New Game" onClick={handleNewGame} />
           </div>
@@ -69,6 +84,8 @@ const App = () => {
       <div className="controls-container">
         <Controls handleMove={handleMove} />
       </div>
+
+      {status === "won" && <Confetti />}
     </div>
   );
 };
