@@ -7,6 +7,7 @@ import Controls from "./components/Controls";
 import Button from "./components/Button";
 import Complexity from "./components/Complexity";
 import Confetti from "./components/Confetti";
+import ColorPicker from "./components/ColorPicker";
 
 import { Status } from "./types";
 
@@ -15,6 +16,7 @@ const App = () => {
   const [gameId, setGameId] = useState<number>(0);
   const [mazeSize, setMazeSize] = useState<number>(10);
   const [playerPos, setPlayerPos] = useState<[number, number]>([0, 0]);
+  const [playerColor, setPlayerColor] = useState<string>("#DC143C");
   const maze: Grid = useMemo(
     () => generateMaze(mazeSize, mazeSize),
     [mazeSize, gameId]
@@ -40,6 +42,11 @@ const App = () => {
     setGameId((prevId) => prevId + 1);
   };
 
+  const handleColorChange = (color: string) => {
+    if (color === "white") return;
+    setPlayerColor(color);
+  };
+
   const handleMove = (event: KeyboardEvent<HTMLDivElement>) => {
     if (status !== "playing") return;
 
@@ -62,7 +69,9 @@ const App = () => {
 
   return (
     <div className="app-container" onKeyDown={handleMove} tabIndex={-1}>
-      <h1 className="title">Maze</h1>
+      <h1 className="title">
+        Labyr<span style={{ color: playerColor }}>i</span>nthus
+      </h1>
 
       <div className="second-row">
         <div className="second-row-inner-container">
@@ -78,7 +87,13 @@ const App = () => {
       </div>
 
       <div className="maze-container">
-        <Maze maze={maze} playerPos={playerPos} />
+        <div className="left-to-maze">
+          <ColorPicker
+            playerColor={playerColor}
+            onColorChange={handleColorChange}
+          />
+        </div>
+        <Maze maze={maze} playerPos={playerPos} playerColor={playerColor} />
       </div>
 
       <div className="controls-container">

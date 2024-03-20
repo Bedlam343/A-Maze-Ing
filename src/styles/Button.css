@@ -40,9 +40,3 @@
   color: #06f;
   fill: #06f;
 }
-
-@media (min-width: 768px) {
-  .new-game-button {
-    min-width: 170px;
-  }
-}

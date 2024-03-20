@@ -4,9 +4,10 @@ import "../styles/Maze.css";
 type PropsType = {
   maze: Grid;
   playerPos: [number, number];
+  playerColor: string;
 };
 
-const Maze = ({ maze, playerPos }: PropsType) => {
+const Maze = ({ maze, playerPos, playerColor }: PropsType) => {
   const makeClassName = (row: number, col: number): string => {
     const classes: string[] = ["cell"];
 
@@ -29,9 +30,9 @@ const Maze = ({ maze, playerPos }: PropsType) => {
       classes.push("destination");
     }
     // draw player
-    if (row === playerPos[0] && col === playerPos[1]) {
-      classes.push("player");
-    }
+    // if (row === playerPos[0] && col === playerPos[1]) {
+    //   classes.push("player");
+    // }
 
     // win condition
     if (
@@ -68,7 +69,18 @@ const Maze = ({ maze, playerPos }: PropsType) => {
             }}
             className={makeClassName(rIndex, cIndex)}
           >
-            <div />
+            {rIndex === playerPos[0] && cIndex === playerPos[1] ? (
+              <div
+                style={{
+                  height: "65%",
+                  width: "65%",
+                  background: playerColor,
+                  borderRadius: "50%",
+                }}
+              />
+            ) : (
+              <div />
+            )}
           </div>
         ))
       )}
