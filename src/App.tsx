@@ -79,6 +79,8 @@ const App = () => {
             value={mazeSize}
             onChange={handleSizeChange}
             disabled={status === "won"}
+            min={5}
+            max={30}
           />
           <div className="new-game-container">
             <Button text="New Game" onClick={handleNewGame} />

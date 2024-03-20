@@ -3,11 +3,13 @@ import "../styles/Complexity.css";
 
 type PropsType = {
   value: number;
+  min: number;
+  max: number;
   onChange: (value: number) => void;
   disabled: boolean;
 };
 
-const Complexity = ({ value, onChange, disabled }: PropsType) => {
+const Complexity = ({ value, min, max, onChange, disabled }: PropsType) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(+event.target.value);
   };
@@ -20,8 +22,8 @@ const Complexity = ({ value, onChange, disabled }: PropsType) => {
           type="range"
           id="size"
           name="size"
-          min="5"
-          max="35"
+          min={min}
+          max={max}
           value={value}
           onChange={handleChange}
           disabled={disabled}
